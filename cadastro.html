@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +9,31 @@
 <body>
     <h1>Cadastro de Livro</h1>
     <div id="Conteiner">
-        <input placeholder="digite o nome do livro">
-        <input placeholder="digite a quantidade de página">
-        <button>SALVAR</button>
+        <input id="nome" placeholder="digite o nome do livro">
+        <input id="paginas" type="number" placeholder="digite a quantidade de páginas">
+        <button onclick="salvarLivro()">SALVAR</button>
+        <button onclick="window.location.href='livros.html'">Ver livros</button>
     </div>
-    
+
+    <script>
+        function salvarLivro() {
+            const nome = document.getElementById('nome').value.trim();
+            const paginas = document.getElementById('paginas').value.trim();
+
+            if (nome === '' || paginas === '') {
+                alert('Preencha o nome e a quantidade de páginas.');
+                return;
+            }
+
+            const livros = JSON.parse(localStorage.getItem('livros')) || [];
+            livros.push({ nome: nome, paginas: paginas });
+            localStorage.setItem('livros', JSON.stringify(livros));
+
+            document.getElementById('nome').value = '';
+            document.getElementById('paginas').value = '';
+
+            alert('Livro salvo com sucesso!');
+        }
+    </script>
 </body>
 </html>

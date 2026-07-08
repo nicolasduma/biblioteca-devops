@@ -16,3 +16,15 @@ button,input {
     margin-right: auto;
 }
 
+.livro {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+}
+
+.vazio {
+    text-align: center;
+    color: gray;
+}

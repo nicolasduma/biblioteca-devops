@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +9,29 @@
 <body>
     <h1>Biblioteca</h1>
     <div id="Conteiner">
-        <button>Lista de livros</button>
-        <button>Ver livros</button>
+        <button onclick="window.location.href='cadastro.html'">Cadastrar livro</button>
+        <div id="lista-livros"></div>
     </div>
-    
+
+    <script>
+        function carregarLivros() {
+            const livros = JSON.parse(localStorage.getItem('livros')) || [];
+            const container = document.getElementById('lista-livros');
+
+            if (livros.length === 0) {
+                container.innerHTML = '<p class="vazio">Nenhum livro cadastrado.</p>';
+                return;
+            }
+
+            container.innerHTML = livros.map(livro => `
+                <div class="livro">
+                    <strong>${livro.nome}</strong>
+                    <span>${livro.paginas} páginas</span>
+                </div>
+            `).join('');
+        }
+
+        carregarLivros();
+    </script>
 </body>
 </html>
